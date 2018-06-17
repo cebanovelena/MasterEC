@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MasterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="PacientDrinkingInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Confidence" Type="float" />
+          <Property Name="DrinkingProgress" Type="float" />
+          <Property Name="Drinking" Type="varchar" MaxLength="50" />
+          <Property Name="Date" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="PacientInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Confidence" Type="float" />
+          <Property Name="Seated" Type="varchar" MaxLength="50" />
+          <Property Name="Date" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="TotalAlarms">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="WeekMobility">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="zilelesaptamanii" Type="varchar" MaxLength="50" />
+          <Property Name="kmparcursi" Type="float" />
+        </EntityType>
+        <Function Name="FinWeeklyMob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetTotal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetTotalAlarms" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MonthlyHydratation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MonthlyMob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MonthlyMobility" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="TodayHydratation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="TodayMob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="WeeklyHydratation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="WeeklyMobility" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="YearlyHydratation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="YearlyMob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="MasterModelStoreContainer">
+          <EntitySet Name="PacientDrinkingInfo" EntityType="Self.PacientDrinkingInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PacientInfo" EntityType="Self.PacientInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TotalAlarms" EntityType="Self.TotalAlarms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WeekMobility" EntityType="Self.WeekMobility" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MasterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MasterEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="GetTotal" ReturnType="Collection(MasterModel.GetTotal_Result)" />
+          <EntitySet Name="PacientInfoes" EntityType="MasterModel.PacientInfo" />
+          <EntitySet Name="WeekMobilities" EntityType="MasterModel.WeekMobility" />
+          <FunctionImport Name="WeeklyMobility" ReturnType="Collection(MasterModel.WeeklyMobility_Result)" />
+          <FunctionImport Name="MonthlyMobility" ReturnType="Collection(MasterModel.MonthlyMobility_Result)" />
+          <FunctionImport Name="WeeklyMob" ReturnType="Collection(MasterModel.WeeklyMob_Result)" />
+          <FunctionImport Name="FinWeeklyMob" ReturnType="Collection(MasterModel.FinWeeklyMob_Result)" />
+          <FunctionImport Name="MonthlyMob" ReturnType="Collection(MasterModel.MonthlyMob_Result)" />
+          <FunctionImport Name="YearlyMob" ReturnType="Collection(MasterModel.YearlyMob_Result)" />
+          <FunctionImport Name="TodayMob" ReturnType="Collection(MasterModel.TodayMob_Result)" />
+          <EntitySet Name="TotalAlarms" EntityType="MasterModel.TotalAlarm" />
+          <FunctionImport Name="GetTotalAlarms" ReturnType="Collection(Int32)" />
+          <EntitySet Name="PacientDrinkingInfoes" EntityType="MasterModel.PacientDrinkingInfo" />
+          <FunctionImport Name="WeeklyHydratation" ReturnType="Collection(MasterModel.WeeklyHydratation_Result)" />
+          <FunctionImport Name="MonthlyHydratation" ReturnType="Collection(MasterModel.MonthlyHydratation_Result)" />
+          <FunctionImport Name="YearlyHydratation" ReturnType="Collection(MasterModel.YearlyHydratation_Result)" />
+          <FunctionImport Name="TodayHydratation" ReturnType="Collection(MasterModel.TodayHydratation_Result)" />
+        </EntityContainer>
+        <ComplexType Name="GetTotal_Result">
+          <Property Type="Int32" Name="Total" Nullable="true" />
+          <Property Type="Int32" Name="Hour" Nullable="true" />
+          <Property Type="Int32" Name="Minute" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="PacientInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Confidence" Type="Double" />
+          <Property Name="Seated" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="WeekMobility">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="zilelesaptamanii" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="kmparcursi" Type="Double" />
+        </EntityType>
+        <ComplexType Name="WeeklyMobility_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="zilelesaptamanii" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="kmparcursi" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="MonthlyMobility_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="lunileanului" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="kmparcursi" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="WeeklyMob_Result">
+          <Property Type="Int32" Name="Minute" Nullable="true" />
+          <Property Type="String" Name="DayOfWeek" Nullable="true" MaxLength="9" />
+          <Property Type="Int32" Name="Nrday" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="FinWeeklyMob_Result">
+          <Property Type="Int32" Name="Minute" Nullable="true" />
+          <Property Type="String" Name="DayOfWeek" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Nrday" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="MonthlyMob_Result">
+          <Property Type="Int32" Name="Minute" Nullable="true" />
+          <Property Type="String" Name="MonthName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="MonthNumber" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="YearlyMob_Result">
+          <Property Type="Int32" Name="Minute" Nullable="true" />
+          <Property Type="Int32" Name="Year" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="TodayMob_Result">
+          <Property Type="Int32" Name="Minute" Nullable="true" />
+          <Property Type="Int32" Name="Today" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="TotalAlarm">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="PacientDrinkingInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Confidence" Type="Double" />
+          <Property Name="DrinkingProgress" Type="Double" />
+          <Property Name="Drinking" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <ComplexType Name="WeeklyHydratation_Result">
+          <Property Type="Double" Name="Liters" Nullable="true" />
+          <Property Type="String" Name="DayOfWeek" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Nrday" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="MonthlyHydratation_Result">
+          <Property Type="Double" Name="Liters" Nullable="true" />
+          <Property Type="String" Name="MonthName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="MonthNumber" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="YearlyHydratation_Result">
+          <Property Type="Double" Name="Liters" Nullable="true" />
+          <Property Type="Int32" Name="Year" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="TodayHydratation_Result">
+          <Property Type="Double" Name="Liters" Nullable="true" />
+          <Property Type="Int32" Name="Today" Nullable="true" />
+          <Property Type="Int32" Name="Month" Nullable="true" />
+          <Property Type="Int32" Name="Year" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MasterModelStoreContainer" CdmEntityContainer="MasterEntities" >
+          <FunctionImportMapping FunctionImportName="GetTotal" FunctionName="MasterModel.Store.GetTotal">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MasterModel.GetTotal_Result">
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Hour" ColumnName="Hour" />
+                <ScalarProperty Name="Minute" ColumnName="Minute" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="PacientInfoes">
+            <EntityTypeMapping TypeName="MasterModel.PacientInfo">
+              <MappingFragment StoreEntitySet="PacientInfo">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Seated" ColumnName="Seated" />
+                <ScalarProperty Name="Confidence" ColumnName="Confidence" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WeekMobilities">
+            <EntityTypeMapping TypeName="MasterModel.WeekMobility">
+              <MappingFragment StoreEntitySet="WeekMobility">
+                <ScalarProperty Name="kmparcursi" ColumnName="kmparcursi" />
+                <ScalarProperty Name="zilelesaptamanii" ColumnName="zilelesaptamanii" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="WeeklyMobility" FunctionName="MasterModel.Store.WeeklyMobility">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MasterModel.WeeklyMobility_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="zilelesaptamanii" ColumnName="zilelesaptamanii" />
+                <ScalarProperty Name="kmparcursi" ColumnName="kmparcursi" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="MonthlyMobility" FunctionName="MasterModel.Store.MonthlyMobility">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MasterModel.MonthlyMobility_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="lunileanului" ColumnName="lunileanului" />
+                <ScalarProperty Name="kmparcursi" ColumnName="kmparcursi" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="FinWeeklyMob" FunctionName="MasterModel.Store.FinWeeklyMob">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MasterModel.FinWeeklyMob_Result">
+                <ScalarProperty Name="Minute" ColumnName="Minute" />
+                <ScalarProperty Name="DayOfWeek" ColumnName="DayOfWeek" />
+                <ScalarProperty Name="Nrday" ColumnName="Nrday" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="MonthlyMob" FunctionName="MasterModel.Store.MonthlyMob">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MasterModel.MonthlyMob_Result">
+                <ScalarProperty Name="Minute" ColumnName="Minute" />
+                <ScalarProperty Name="MonthName" ColumnName="MonthName" />
+                <ScalarProperty Name="MonthNumber" ColumnName="MonthNumber" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="YearlyMob" FunctionName="MasterModel.Store.YearlyMob">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MasterModel.YearlyMob_Result">
+                <ScalarProperty Name="Minute" ColumnName="Minute" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="TodayMob" FunctionName="MasterModel.Store.TodayMob">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MasterModel.TodayMob_Result">
+                <ScalarProperty Name="Minute" ColumnName="Minute" />
+                <ScalarProperty Name="Today" ColumnName="Today" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="TotalAlarms">
+            <EntityTypeMapping TypeName="MasterModel.TotalAlarm">
+              <MappingFragment StoreEntitySet="TotalAlarms">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetTotalAlarms" FunctionName="MasterModel.Store.GetTotalAlarms" />
+          <EntitySetMapping Name="PacientDrinkingInfoes">
+            <EntityTypeMapping TypeName="MasterModel.PacientDrinkingInfo">
+              <MappingFragment StoreEntitySet="PacientDrinkingInfo">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Drinking" ColumnName="Drinking" />
+                <ScalarProperty Name="DrinkingProgress" ColumnName="DrinkingProgress" />
+                <ScalarProperty Name="Confidence" ColumnName="Confidence" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="WeeklyHydratation" FunctionName="MasterModel.Store.WeeklyHydratation">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MasterModel.WeeklyHydratation_Result">
+                <ScalarProperty Name="Liters" ColumnName="Liters" />
+                <ScalarProperty Name="DayOfWeek" ColumnName="DayOfWeek" />
+                <ScalarProperty Name="Nrday" ColumnName="Nrday" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="MonthlyHydratation" FunctionName="MasterModel.Store.MonthlyHydratation">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MasterModel.MonthlyHydratation_Result">
+                <ScalarProperty Name="Liters" ColumnName="Liters" />
+                <ScalarProperty Name="MonthName" ColumnName="MonthName" />
+                <ScalarProperty Name="MonthNumber" ColumnName="MonthNumber" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="YearlyHydratation" FunctionName="MasterModel.Store.YearlyHydratation">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MasterModel.YearlyHydratation_Result">
+                <ScalarProperty Name="Liters" ColumnName="Liters" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="TodayHydratation" FunctionName="MasterModel.Store.TodayHydratation">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MasterModel.TodayHydratation_Result">
+                <ScalarProperty Name="Liters" ColumnName="Liters" />
+                <ScalarProperty Name="Today" ColumnName="Today" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
